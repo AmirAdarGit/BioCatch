@@ -7,6 +7,7 @@ function Home() {
     if (typeof window !== 'undefined' && window.cdApi?.changeContext) {
       window.cdApi.changeContext('home');
     }
+    console.log('[Home] Mounted — context: home');
   }, []);
 
   return (

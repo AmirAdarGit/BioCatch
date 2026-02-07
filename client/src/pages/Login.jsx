@@ -11,10 +11,13 @@ function Login() {
     if (typeof window !== 'undefined' && window.cdApi?.changeContext) {
       window.cdApi.changeContext('login_screen');
     }
+    console.log('[Login] Mounted — context: login_screen');
   }, []);
 
   function handleLogin() {
     const sessionId = csid ?? crypto.randomUUID();
+    const isNewSession = !csid;
+    console.log('[Login] handleLogin —', isNewSession ? 'new CSID' : 'reusing CSID', '→', sessionId);
     if (!csid) setCsid(sessionId);
     if (typeof window !== 'undefined' && window.cdApi?.setCustomerSessionId) {
       window.cdApi.setCustomerSessionId(sessionId);

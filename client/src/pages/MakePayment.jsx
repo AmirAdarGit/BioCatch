@@ -7,9 +7,11 @@ function MakePayment() {
     if (typeof window !== 'undefined' && window.cdApi?.changeContext) {
       window.cdApi.changeContext('make_payment');
     }
+    console.log('[MakePayment] Mounted — context: make_payment');
   }, []);
 
   function handlePayment() {
+    console.log('[MakePayment] Make Payment clicked');
     // TODO: trigger getScore API
   }
 

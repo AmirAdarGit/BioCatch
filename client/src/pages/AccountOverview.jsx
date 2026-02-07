@@ -11,9 +11,11 @@ function AccountOverview() {
     if (typeof window !== 'undefined' && window.cdApi?.changeContext) {
       window.cdApi.changeContext('account_overview');
     }
+    console.log('[AccountOverview] Mounted — context: account_overview');
   }, []);
 
   function handleLogout() {
+    console.log('[AccountOverview] Logout clicked — clearing session');
     clearSession();
     navigate('/');
   }

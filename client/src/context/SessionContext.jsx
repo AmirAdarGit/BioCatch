@@ -2,22 +2,35 @@ import { createContext, useContext, useState, useEffect, useCallback } from 'rea
 
 const SessionContext = createContext(null);
 
+const LOG_PREFIX = '[Session]';
+
 export function SessionProvider({ children }) {
-  const [csid, setCsidState] = useState(() => crypto.randomUUID());
+  const [csid, setCsidState] = useState(() => {
+    const id = crypto.randomUUID();
+    console.log(`${LOG_PREFIX} CSID created (app load):`, id);
+    return id;
+  });
 
   const setCsid = useCallback((value) => {
+    console.log(`${LOG_PREFIX} setCsid called:`, value);
     setCsidState(value);
   }, []);
 
   const clearSession = useCallback(() => {
+    console.log(`${LOG_PREFIX} clearSession called — CSID cleared`);
     setCsidState(null);
   }, []);
 
   useEffect(() => {
-    if (!csid) return;
+    if (!csid) {
+      console.log(`${LOG_PREFIX} CSID is null (e.g. after logout)`);
+      return;
+    }
+    console.log(`${LOG_PREFIX} CSID changed / syncing to SDK:`, csid);
     const applyToSdk = () => {
       if (typeof window !== 'undefined' && window.cdApi?.setCustomerSessionId) {
         window.cdApi.setCustomerSessionId(csid);
+        console.log(`${LOG_PREFIX} SDK setCustomerSessionId OK`);
       }
     };
     applyToSdk();
