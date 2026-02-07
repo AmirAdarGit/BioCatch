@@ -1,0 +1,10 @@
+@use '../variables' as *;
+
+.page--account {
+  .page__actions {
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+    margin-top: $space-md;
+  }
+}

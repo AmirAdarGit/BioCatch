@@ -1,4 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
+import '../styles/pages/AccountOverview.scss';
 
 function AccountOverview() {
   const navigate = useNavigate();
@@ -9,14 +10,15 @@ function AccountOverview() {
   }
 
   return (
-    <div>
+    <div className="page page--account">
       <h1>Account Overview</h1>
       <p>Your account summary.</p>
-      <Link to="/payment">Make Payment</Link>
-      <br />
-      <button type="button" onClick={handleLogout}>
-        Logout
-      </button>
+      <div className="page__actions">
+        <Link to="/payment" className="btn link-block">Make Payment</Link>
+        <button type="button" className="btn" onClick={handleLogout}>
+          Logout
+        </button>
+      </div>
     </div>
   );
 }

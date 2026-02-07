@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import '../styles/pages/MakePayment.scss';
 
 function MakePayment() {
   function handlePayment() {
@@ -6,14 +7,15 @@ function MakePayment() {
   }
 
   return (
-    <div>
+    <div className="page page--payment">
       <h1>Make Payment</h1>
       <p>Complete a payment.</p>
-      <button type="button" onClick={handlePayment}>
-        Make Payment
-      </button>
-      <br />
-      <Link to="/account">Back to Account</Link>
+      <div className="page__actions">
+        <button type="button" className="btn" onClick={handlePayment}>
+          Make Payment
+        </button>
+        <Link to="/account" className="link-block">Back to Account</Link>
+      </div>
     </div>
   );
 }

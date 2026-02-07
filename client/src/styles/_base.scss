@@ -1,0 +1,32 @@
+@use 'variables' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: $space-lg $space-md;
+  font-family: $font-sans;
+  font-size: $font-size-base;
+  line-height: $line-height;
+  color: $color-text;
+  background-color: $color-bg;
+}
+
+a {
+  color: $color-primary;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+button {
+  font-family: inherit;
+  font-size: $font-size-base;
+  cursor: pointer;
+}

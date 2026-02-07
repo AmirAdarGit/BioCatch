@@ -1,0 +1,41 @@
+@use 'variables' as *;
+@use 'base';
+
+.page {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: $space-xl $space-md;
+  background: $color-surface;
+  border-radius: $radius;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+
+  h1 {
+    margin: 0 0 $space-sm;
+    font-size: $font-size-xl;
+    font-weight: 600;
+  }
+
+  p {
+    margin: 0 0 $space-lg;
+    color: $color-text-muted;
+  }
+}
+
+.btn {
+  display: inline-block;
+  padding: $space-sm $space-lg;
+  color: #fff;
+  background: $color-primary;
+  border: none;
+  border-radius: $radius;
+
+  &:hover {
+    background: $color-primary-hover;
+    text-decoration: none;
+  }
+}
+
+.link-block {
+  display: inline-block;
+  margin-top: $space-md;
+}

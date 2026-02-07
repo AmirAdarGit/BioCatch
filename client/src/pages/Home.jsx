@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
+import '../styles/pages/Home.scss';
 
 function Home() {
   return (
-    <div>
+    <div className="page page--home">
       <h1>Home</h1>
       <p>Welcome. Continue to login.</p>
-      <Link to="/login">Login</Link>
+      <Link to="/login" className="btn link-block page__cta">Login</Link>
     </div>
   );
 }
