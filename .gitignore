@@ -1,5 +1,10 @@
 # Dependencies
 node_modules/
+.node_modules/
+.vite/
+
+# Change tracking / local
+changes
 
 # Build output
 client/dist/
