@@ -2,6 +2,16 @@ import { createContext, useContext, useState, useEffect, useCallback, type React
 
 const LOG_PREFIX = '[Session]';
 
+// Single CSID per app load (survives React Strict Mode double-mount in dev)
+let initialCsid: string | null = null;
+function getInitialCsid(): string {
+  if (initialCsid === null) {
+    initialCsid = crypto.randomUUID();
+    console.log(`${LOG_PREFIX} CSID created (app load):`, initialCsid);
+  }
+  return initialCsid;
+}
+
 export interface SessionContextValue {
   csid: string | null;
   setCsid: (value: string | null) => void;
@@ -15,11 +25,7 @@ interface SessionProviderProps {
 }
 
 export function SessionProvider({ children }: SessionProviderProps): ReactElement {
-  const [csid, setCsidState] = useState<string | null>(() => {
-    const id = crypto.randomUUID();
-    console.log(`${LOG_PREFIX} CSID created (app load):`, id);
-    return id;
-  });
+  const [csid, setCsidState] = useState<string | null>(getInitialCsid);
 
   const setCsid = useCallback((value: string | null) => {
     console.log(`${LOG_PREFIX} setCsid called:`, value);
