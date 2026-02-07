@@ -1,7 +1,14 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/pages/Home.scss';
 
 function Home() {
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.cdApi?.changeContext) {
+      window.cdApi.changeContext('home');
+    }
+  }, []);
+
   return (
     <div className="page page--home">
       <h1>Home</h1>

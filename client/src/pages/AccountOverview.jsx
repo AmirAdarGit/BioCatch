@@ -1,11 +1,20 @@
+import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useSession } from '../context/SessionContext.jsx';
 import '../styles/pages/AccountOverview.scss';
 
 function AccountOverview() {
   const navigate = useNavigate();
+  const { clearSession } = useSession();
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.cdApi?.changeContext) {
+      window.cdApi.changeContext('account_overview');
+    }
+  }, []);
 
   function handleLogout() {
-    // TODO: clear session, new CSID on next login
+    clearSession();
     navigate('/');
   }
 

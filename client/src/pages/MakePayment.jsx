@@ -1,7 +1,14 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/pages/MakePayment.scss';
 
 function MakePayment() {
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.cdApi?.changeContext) {
+      window.cdApi.changeContext('make_payment');
+    }
+  }, []);
+
   function handlePayment() {
     // TODO: trigger getScore API
   }
