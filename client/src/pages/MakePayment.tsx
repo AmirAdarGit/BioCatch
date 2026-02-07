@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, type ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/pages/MakePayment.scss';
 
-function MakePayment() {
+function MakePayment(): ReactElement {
   useEffect(() => {
     if (typeof window !== 'undefined' && window.cdApi?.changeContext) {
       window.cdApi.changeContext('make_payment');
@@ -10,7 +10,7 @@ function MakePayment() {
     console.log('[MakePayment] Mounted — context: make_payment');
   }, []);
 
-  function handlePayment() {
+  function handlePayment(): void {
     console.log('[MakePayment] Make Payment clicked');
     // TODO: trigger getScore API
   }

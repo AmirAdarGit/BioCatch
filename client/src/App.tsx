@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { SessionProvider } from './context/SessionContext.jsx';
-import Home from './pages/Home.jsx';
-import Login from './pages/Login.jsx';
-import AccountOverview from './pages/AccountOverview.jsx';
-import MakePayment from './pages/MakePayment.jsx';
+import { SessionProvider } from './context/SessionContext';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import AccountOverview from './pages/AccountOverview';
+import MakePayment from './pages/MakePayment';
 
 function App() {
   return (

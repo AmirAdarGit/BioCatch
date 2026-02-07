@@ -1,17 +1,27 @@
-import { createContext, useContext, useState, useEffect, useCallback } from 'react';
-
-const SessionContext = createContext(null);
+import { createContext, useContext, useState, useEffect, useCallback, type ReactNode, type ReactElement } from 'react';
 
 const LOG_PREFIX = '[Session]';
 
-export function SessionProvider({ children }) {
-  const [csid, setCsidState] = useState(() => {
+export interface SessionContextValue {
+  csid: string | null;
+  setCsid: (value: string | null) => void;
+  clearSession: () => void;
+}
+
+const SessionContext = createContext<SessionContextValue | null>(null);
+
+interface SessionProviderProps {
+  children: ReactNode;
+}
+
+export function SessionProvider({ children }: SessionProviderProps): ReactElement {
+  const [csid, setCsidState] = useState<string | null>(() => {
     const id = crypto.randomUUID();
     console.log(`${LOG_PREFIX} CSID created (app load):`, id);
     return id;
   });
 
-  const setCsid = useCallback((value) => {
+  const setCsid = useCallback((value: string | null) => {
     console.log(`${LOG_PREFIX} setCsid called:`, value);
     setCsidState(value);
   }, []);
@@ -38,7 +48,7 @@ export function SessionProvider({ children }) {
     return () => clearTimeout(t);
   }, [csid]);
 
-  const value = { csid, setCsid, clearSession };
+  const value: SessionContextValue = { csid, setCsid, clearSession };
   return (
     <SessionContext.Provider value={value}>
       {children}
@@ -46,7 +56,7 @@ export function SessionProvider({ children }) {
   );
 }
 
-export function useSession() {
+export function useSession(): SessionContextValue {
   const ctx = useContext(SessionContext);
   if (!ctx) throw new Error('useSession must be used within SessionProvider');
   return ctx;

@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, type ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/pages/Home.scss';
 
-function Home() {
+function Home(): ReactElement {
   useEffect(() => {
     if (typeof window !== 'undefined' && window.cdApi?.changeContext) {
       window.cdApi.changeContext('home');

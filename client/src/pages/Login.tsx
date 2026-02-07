@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, type ReactElement } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useSession } from '../context/SessionContext.jsx';
+import { useSession } from '../context/SessionContext';
 import '../styles/pages/Login.scss';
 
-function Login() {
+function Login(): ReactElement {
   const navigate = useNavigate();
   const { csid, setCsid } = useSession();
 
@@ -14,7 +14,7 @@ function Login() {
     console.log('[Login] Mounted — context: login_screen');
   }, []);
 
-  function handleLogin() {
+  function handleLogin(): void {
     const sessionId = csid ?? crypto.randomUUID();
     const isNewSession = !csid;
     console.log('[Login] handleLogin —', isNewSession ? 'new CSID' : 'reusing CSID', '→', sessionId);

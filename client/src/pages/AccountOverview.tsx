@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, type ReactElement } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useSession } from '../context/SessionContext.jsx';
+import { useSession } from '../context/SessionContext';
 import '../styles/pages/AccountOverview.scss';
 
-function AccountOverview() {
+function AccountOverview(): ReactElement {
   const navigate = useNavigate();
   const { clearSession } = useSession();
 
@@ -14,7 +14,7 @@ function AccountOverview() {
     console.log('[AccountOverview] Mounted — context: account_overview');
   }, []);
 
-  function handleLogout() {
+  function handleLogout(): void {
     console.log('[AccountOverview] Logout clicked — clearing session');
     clearSession();
     navigate('/');
