@@ -13,12 +13,8 @@ app.use("/api", (_req, res, next) => {
   next();
 });
 
-// CORS: allow client (e.g. localhost:5173) to call this API
-app.use(
-  cors({
-    origin: true,
-  })
-);
+// CORS: only allow requests from the frontend
+app.use(cors({ origin: ["http://localhost:5173", "http://127.0.0.1:5173"] }));
 
 // API routes
 app.use("/api", apiRoutes);
