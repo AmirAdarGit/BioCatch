@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import { markInitialized, logRequest } from "../store";
+import { markInitialized, logRequest, getRequestLog } from "../store";
 import { validateInit, getCsid as getInitCsid } from "../middleware/validateInit";
 import { validateGetScore } from "../middleware/validateGetScore";
 import { randomUuid, mockAttemptId } from "../utils/uuid";
@@ -55,6 +55,14 @@ router.post("/getScore", validateGetScore, (req: Request<object, object, GetScor
     request_id,
     status: "success",
   });
+});
+
+/**
+ * GET /api/requestLog
+ * Returns recent request log (for debugging). Last 50 entries.
+ */
+router.get("/requestLog", (_req: Request, res: Response) => {
+  res.status(200).json({ log: getRequestLog() });
 });
 
 export default router;
