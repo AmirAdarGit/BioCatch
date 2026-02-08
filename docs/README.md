@@ -6,6 +6,7 @@ A small web app that simulates a **client-side SDK + server API** integration.
 User flow: **Home → Login → Account Overview → Make Payment → Logout**.  
 No real auth or database; the server is a mock.
 
+
 ## Main pieces
 
 - **Client (React SPA)**  
@@ -14,6 +15,15 @@ No real auth or database; the server is a mock.
 
 - **Server (Express)**  
   Exposes **POST /api/init** and **POST /api/getScore**. CORS is set so only the frontend origin (e.g. `http://localhost:5173`) can call these endpoints.
+
+## Stack
+
+- **Client:** React 19, React Router 7, Vite 7, TypeScript, Sass.
+- **Server:** Node.js, Express 4, TypeScript, CORS, dotenv, uuid.
+
+- **Client:** Single-page app built with Vite; no state library beyond React (context for session).
+- **Server:** REST API only; in-memory store for “init per CSID”; no database.
+
 
 ## How to run
 
