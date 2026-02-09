@@ -57,7 +57,7 @@ function Login(): ReactElement {
       {error && <p className="page__error" role="alert">{error}</p>}
       <div className="page__actions">
         <button type="button" className="btn" onClick={handleLogin} disabled={loading}>
-          {loading ? 'Logging in…' : 'Log in'}
+          {loading ? 'Logging in…' : 'Login'}
         </button>
         <Link to="/" className="btn btn--secondary">Back to Home</Link>
       </div>
