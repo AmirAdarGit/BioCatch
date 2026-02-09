@@ -52,14 +52,14 @@ function Login(): ReactElement {
 
   return (
     <div className="page page--login">
-      <h1>Login</h1>
-      <p>Sign in to continue.</p>
-      {error && <p className="page__error" style={{ color: 'red' }}>{error}</p>}
+      <h1>Log in</h1>
+      <p className="page__subtitle">Use the button below to trigger the init API and continue to your account.</p>
+      {error && <p className="page__error" role="alert">{error}</p>}
       <div className="page__actions">
         <button type="button" className="btn" onClick={handleLogin} disabled={loading}>
-          {loading ? 'Logging in…' : 'Login'}
+          {loading ? 'Logging in…' : 'Log in'}
         </button>
-        <Link to="/" className="link-block">Back to Home</Link>
+        <Link to="/" className="btn btn--secondary">Back to Home</Link>
       </div>
     </div>
   );

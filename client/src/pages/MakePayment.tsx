@@ -40,19 +40,19 @@ function MakePayment(): ReactElement {
 
   return (
     <div className="page page--payment">
-      <h1>Make Payment</h1>
-      <p>Complete a payment.</p>
-      {error && <p className="page__error" style={{ color: 'red' }}>{error}</p>}
+      <h1>Make payment</h1>
+      <p className="page__subtitle">Complete a payment. This triggers the getScore API for the current session.</p>
+      {error && <p className="page__error" role="alert">{error}</p>}
       {result && (
-        <p className="page__result" style={{ color: 'green' }}>
-          Score: {result.score ?? '—'}, request_id: {result.request_id}
-        </p>
+        <div className="page__result">
+          <strong>Success.</strong> Score: {result.score ?? '—'} · request_id: {result.request_id}
+        </div>
       )}
       <div className="page__actions">
         <button type="button" className="btn" onClick={handlePayment} disabled={loading}>
-          {loading ? 'Processing…' : 'Make Payment'}
+          {loading ? 'Processing…' : 'Make payment'}
         </button>
-        <Link to="/account" className="link-block">Back to Account</Link>
+        <Link to="/account" className="btn btn--secondary">Back to Account</Link>
       </div>
     </div>
   );

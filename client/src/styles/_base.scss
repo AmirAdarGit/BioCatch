@@ -8,25 +8,45 @@
 
 body {
   margin: 0;
-  padding: $space-lg $space-md;
+  min-height: 100vh;
+  padding: 0;
   font-family: $font-sans;
   font-size: $font-size-base;
   line-height: $line-height;
   color: $color-text;
-  background-color: $color-bg;
+  background: $color-bg;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 a {
   color: $color-primary;
   text-decoration: none;
+  transition: color $transition;
 
   &:hover {
+    color: $color-primary-hover;
     text-decoration: underline;
   }
 }
 
 button {
   font-family: inherit;
-  font-size: $font-size-base;
+  font-size: inherit;
   cursor: pointer;
+  transition: background-color $transition, transform 0.1s ease;
+
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
 }

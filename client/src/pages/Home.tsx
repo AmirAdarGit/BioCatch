@@ -12,9 +12,9 @@ function Home(): ReactElement {
 
   return (
     <div className="page page--home">
-      <h1>Home</h1>
-      <p>Welcome. Continue to login.</p>
-      <Link to="/login" className="btn link-block page__cta">Login</Link>
+      <h1>Welcome</h1>
+      <p className="page__subtitle">Simulate a user journey: log in, view your account, make a payment, or log out.</p>
+      <Link to="/login" className="btn page__cta">Log in</Link>
     </div>
   );
 }

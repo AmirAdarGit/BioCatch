@@ -22,12 +22,12 @@ function AccountOverview(): ReactElement {
 
   return (
     <div className="page page--account">
-      <h1>Account Overview</h1>
-      <p>Your account summary.</p>
+      <h1>Account overview</h1>
+      <p className="page__subtitle">Your account summary. Make a payment or log out.</p>
       <div className="page__actions">
-        <Link to="/payment" className="btn link-block">Make Payment</Link>
-        <button type="button" className="btn" onClick={handleLogout}>
-          Logout
+        <Link to="/payment" className="btn">Make payment</Link>
+        <button type="button" className="btn btn--secondary" onClick={handleLogout}>
+          Log out
         </button>
       </div>
     </div>

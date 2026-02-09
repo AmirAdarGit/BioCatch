@@ -1,10 +1,13 @@
 @use '../variables' as *;
 
 .page--payment {
+  .page__result {
+    strong {
+      font-weight: $font-weight-semibold;
+    }
+  }
+
   .page__actions {
-    display: flex;
-    flex-direction: column;
     gap: $space-md;
-    margin-top: $space-md;
   }
 }

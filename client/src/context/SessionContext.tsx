@@ -1,15 +1,25 @@
 import { createContext, useContext, useState, useEffect, useCallback, type ReactNode, type ReactElement } from 'react';
 
 const LOG_PREFIX = '[Session]';
+const STORAGE_KEY = 'biocatch_csid';
 
-// Single CSID per app load (survives React Strict Mode double-mount in dev)
-let initialCsid: string | null = null;
-function getInitialCsid(): string {
-  if (initialCsid === null) {
-    initialCsid = crypto.randomUUID();
-    console.log(`${LOG_PREFIX} CSID created (app load):`, initialCsid);
+function getStoredCsid(): string | null {
+  if (typeof window === 'undefined') return null;
+  try {
+    return window.localStorage.getItem(STORAGE_KEY);
+  } catch {
+    return null;
   }
-  return initialCsid;
+}
+
+function setStoredCsid(value: string | null): void {
+  if (typeof window === 'undefined') return;
+  try {
+    if (value) window.localStorage.setItem(STORAGE_KEY, value);
+    else window.localStorage.removeItem(STORAGE_KEY);
+  } catch {
+    // ignore
+  }
 }
 
 export interface SessionContextValue {
@@ -25,16 +35,18 @@ interface SessionProviderProps {
 }
 
 export function SessionProvider({ children }: SessionProviderProps): ReactElement {
-  const [csid, setCsidState] = useState<string | null>(getInitialCsid);
+  const [csid, setCsidState] = useState<string | null>(getStoredCsid);
 
   const setCsid = useCallback((value: string | null) => {
     console.log(`${LOG_PREFIX} setCsid called:`, value);
     setCsidState(value);
+    setStoredCsid(value);
   }, []);
 
   const clearSession = useCallback(() => {
     console.log(`${LOG_PREFIX} clearSession called — CSID cleared`);
     setCsidState(null);
+    setStoredCsid(null);
   }, []);
 
   useEffect(() => {
